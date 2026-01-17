@@ -1138,21 +1138,28 @@
 
         // 1. Page Navigation Logic
         function switchPage(pageId, btn) {
-            // Hide all sections
-            document.querySelectorAll('.page-section').forEach(sec => {
-                sec.classList.remove('active-section');
-            });
-            // Show selected section
-            document.getElementById(pageId).classList.add('active-section');
+    // ১. সব সেকশন হাইড করা
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active-section'));
+    
+    // ২. টার্গেট সেকশন দেখানো
+    const targetSection = document.getElementById(pageId);
+    if (targetSection) {
+        targetSection.classList.add('active-section');
+    }
 
-            // Update buttons
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    // ৩. নেভিগেশন বাটনের একটিভ ক্লাস আপডেট করা
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
+    // ৪. মোবাইল মেনু অটোমেটিক বন্ধ করা (এটিই আপনার সমস্যার সমাধান)
+    const navLinks = document.querySelector('.nav-links');
+    if (navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+    }
 
+    // ৫. স্ক্রল উপরে নিয়ে যাওয়া
+    window.scrollTo(0, 0);
+}
         function toggleMenu() {
             document.querySelector('.nav-links').classList.toggle('active');
         }
@@ -1191,3 +1198,4 @@
     </script>
 </body>
 </html>
+
