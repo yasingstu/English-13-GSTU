@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Batch-13 | GSTU</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS STYLES -->
+    <style>
+        :root {
+            --primary-color: #1e3a8a; /* Deep Blue */
+            --secondary-color: #f59e0b; /* Amber */
+            --text-dark: #111827;
+            --text-light: #6b7280;
+            --bg-light: #f3f4f6;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+            position: relative;
+        }
+
+        .logos {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .batch-logo-svg {
+            height: 40px;
+            width: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 5px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li { display: inline-block; }
+
+        .nav-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            color: var(--text-light);
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .nav-btn:hover { color: var(--primary-color); background: #eff6ff; }
+        
+        .nav-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .navbar { padding: 0.8rem 1rem; }
+            .hamburger { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                padding: 1rem 0;
+                z-index: 999;
+                border-top: 1px solid #eee;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-btn { display: block; width: 100%; padding: 1rem; border-radius: 0; }
+            .banner-slider { height: 250px; }
+            .section-title { font-size: 1.5rem; }
+        }
+
+        /* --- Main Layout --- */
+        main { min-height: 80vh; }
+        
+        /* This class handles showing/hiding sections */
+        .page-section {
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page-section.active-section { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Common Section Styles --- */
+        .container { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .section-title { text-align: center; margin-bottom: 2.5rem; font-size: 2rem; color: var(--primary-color); position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--secondary-color); margin: 10px auto 0; border-radius: 2px; }
+
+        /* --- Banner Slider --- */
+        .banner-slider {
+            width: 100%;
+            height: 450px;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100% !important; height: 100%;
+            opacity: 0;
+            display: none;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active { opacity: 1; display: block; position: relative; }
+        
+        .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; display: block; }
+        
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            width: 80%;
+        }
+        .slide-content h2 { font-size: 2.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+
+        /* --- PROFILE PAGE --- */
+        .profile-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr; /* Mobile Default */
+        }
+
+        @media (min-width: 768px) { .profile-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .profile-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .profile-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        .profile-img-container {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            border: 4px solid var(--bg-light);
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .profile-card:hover .profile-img-container img { transform: scale(1.1); }
+
+        .st-name { font-size: 1.4rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.2rem; }
+        .st-district { color: var(--text-light); font-size: 0.95rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        
+        .st-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #1877f2;
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        .st-btn:hover { background-color: #145dbf; }
+
+        /* --- GALLERY PAGE --- */
+        .gallery-container {
+            column-count: 4; 
+            column-gap: .5rem;
+        }
+        .gallery-container-3coloumn {
+            column-count: 3; 
+            column-gap: .5rem;
+        }
+
+        .gallery-item {
+            margin-bottom: .5rem;
+            break-inside: avoid;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover { transform: translateY(-5px); }
+        .gallery-item:hover img { transform: scale(1.05); }
+
+        @media (max-width: 1024px) { .gallery-container { column-count: 3; } .gallery-container-3coloumn { column-count: 2; } }
+        @media (max-width: 600px) { .gallery-container { column-count: 2; } .gallery-container-3coloumn { column-count: 1; } }
+
+        /* --- LIGHTBOX --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.show { display: flex; opacity: 1; }
+
+        .lightbox-content {
+            max-width: 100%;
+            max-height: 95vh;
+            width: auto;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            object-fit: contain;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-btn:hover { color: var(--secondary-color); }
+
+        /* --- CONTACT FORM --- */
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        .contact-form { flex: 1; min-width: 300px; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; }
+        .btn-submit { background: var(--primary-color); color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 5px; cursor: pointer; font-weight: 600; width: 100%; }
+
+        /* --- Footer --- */
+        footer { background: var(--primary-color); color: white; padding: 2rem 0; text-align: center; margin-top: 3rem; }
+        .footer-content p { margin-bottom: 0.5rem; opacity: 0.8; }
+
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <header>
+        <nav class="navbar">
+            <div class="logos">
+                <img src="logo.png" alt="University Logo" class="logo-img">
+            </div>
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <ul class="nav-links">
+                <li><button class="nav-btn active" onclick="switchPage('home', this)">Home</button></li>
+                <li><button class="nav-btn" onclick="switchPage('profiles', this)">Profiles</button></li>
+                <li><button class="nav-btn" onclick="switchPage('gallery', this)">Gallery</button></li>
+                <li><button class="nav-btn" onclick="switchPage('contact', this)">Contact</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- === HOME PAGE === -->
+        <section id="home" class="page-section active-section">
+            <div class="banner-slider">
+                <div class="slide active">
+                    <img src="banner image/narail.jpeg" alt="Banner 1">
+                    <div class="slide-content">
+                        <h2>Welcome to English Batch-13</h2>
+                        <p>Learning, Growing, and Achieving Together</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="banner image/orientation.jpg" alt="Banner 2">
+                    <div class="slide-content">
+                        <h2>Excellence in Literature</h2>
+                        <p>Exploring the depths of English Language</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="banner image/boys gang.jpeg" alt="Banner 3">
+                    <div class="slide-content">
+                        <h2>Our Memories</h2>
+                        <p>Capturing moments that last forever</p>
+                    </div>
+                </div>
+            </div>
+            <!-- gallery section (page) shows here too -->
+            <div id="home-gallery-loader"></div>
+
+
+
+
+
+        </section>
+
+        <!-- === PROFILES PAGE === -->
+        <section id="profiles" class="page-section">
+            <div class="container">
+                <h2 class="section-title">Batch-13 Students</h2>
+                <div class="profile-grid">
+                    <!-- Yasin -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/yasin.jpg" alt="Yasin Arafat">
+                        </div>
+                        <h3 class="st-name">Yasin Arafat <span style="color:#f59e0b">CR</span></h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Lakshmipur</p>
+                        <a href="https://www.facebook.com/MdyArafat0" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- layeba -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/layeba.jpeg" alt="layeba">
+                        </div>
+                        <h3 class="st-name">Layeba Tasnim <span style="color:#f59e0b">ACR</span></h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Dhaka</p>
+                        <a href="https://www.facebook.com/layeba.tasnim.50" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- dolon -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/dolon.jpeg" alt="dolon">
+                        </div>
+                        <h3 class="st-name">Jannatul Ferdous</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Shatkhira</p>
+                        <a href="https://www.facebook.com/jannatul.ferdous.918804" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Purabi Kar -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/purabi.jpeg" alt="purabi">
+                        </div>
+                        <h3 class="st-name">Purabi Kar</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Khulna</p>
+                        <a href="https://www.facebook.com/purabi.kar.2024" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Silmi Chowdhury -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/silmi.jpeg" alt="Silmi">
+                        </div>
+                        <h3 class="st-name">Silmi Chowdhury</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Nilfamari</p>
+                        <a href="https://www.facebook.com/silmi.chowdhury.2024?mibextid=ZbWKwL" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Md Sourav -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/sourav.jpeg" alt="Md Sourav">
+                        </div>
+                        <h3 class="st-name">Md Sourav</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Gopalganj</p>
+                        <a href="https://www.facebook.com/share/1GMHK7cieK/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Anita -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/anita.jpeg" alt="Anita">
+                        </div>
+                        <h3 class="st-name">Anita</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Borguna</p>
+                        <a href="https://www.facebook.com/a.ni.ta.75216" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Ratul Hossain -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/Ratul" alt="Ratul Hossain">
+                        </div>
+                        <h3 class="st-name">Ratul Hossain</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Jeshore</p>
+                        <a href="https://www.facebook.com/abid.hassan.58173000" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Saifa Nashitat Tasfia -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/Tasfia.jpeg" alt="Saifa Nashitat Tasfia">
+                        </div>
+                        <h3 class="st-name">Saifa Nashitat Tasfia</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Dinajpur</p>
+                        <a href="https://www.facebook.com/NashitatTashfia" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Md Abdullah Mondol -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/abdullah.jpeg" alt="Md Abdullah Mondol">
+                        </div>
+                        <h3 class="st-name">Md Abdullah Mondol</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Chuadanga</p>
+                        <a href="https://www.facebook.com/md.abdullah.312552" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                     <!-- Saiyara Nazifa Islam -->
+                     <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/procheta.jpeg" alt="Saiyara Nazifa Islam">
+                        </div>
+                        <h3 class="st-name">Saiyara Nazifa Islam Procheta</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Nilfamari</p>
+                        <a href="https://www.facebook.com/share/16NxFs9hjv/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Marifur Rahman Maruf -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/Maruf" alt="Maruf">
+                        </div>
+                        <h3 class="st-name">Marifur Rahman Maruf</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Nilfamari</p>
+                        <a href="https://www.facebook.com/marifur12" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Nishat Nabila -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/nabila.jpg" alt="Nishat Nabila">
+                        </div>
+                        <h3 class="st-name">Nishat Nabila</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Chuadanga</p>
+                        <a href="https://www.facebook.com/share/1JqwbSP4aH/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Sayma Akter -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/putul.jpeg" alt="putul">
+                        </div>
+                        <h3 class="st-name">Sayma Akter Putul</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Khulna</p>
+                        <a href="https://www.facebook.com/share/1JW4DBxDBd/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Mst. Anonnya Islam -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/anonna.jpeg" alt="Mst. Anonnya Islam">
+                        </div>
+                        <h3 class="st-name">Mst. Anonnya Islam</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Meherpur</p>
+                        <a href="https://www.facebook.com/share/1DCnBZ96gM/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Shama Islam -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/sham.jpeg" alt="Shama Islam">
+                        </div>
+                        <h3 class="st-name">Shama Islam</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Gopalganj</p>
+                        <a href="https://www.facebook.com/Islamshama" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Sumaya Akter Kajole -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/Kajole" alt="Sumaya Akter Kajole">
+                        </div>
+                        <h3 class="st-name">Sumaya Akter Kajole</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Rajbari</p>
+                        <a href="https://www.facebook.com/profile.php?id=61581876571192" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Sanjida Afrose Sneha -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/meeow.jpeg" alt="meeow">
+                        </div>
+                        <h3 class="st-name">Sanjida Afros Sneha</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Gazipur</p>
+                        <a href="https://www.facebook.com/sanjida.afroz.sneha" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Sanjita Afrose Rita -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/sanjita.jpeg" alt="Sanjita Afrose Rita">
+                        </div>
+                        <h3 class="st-name">Sanjita Afrose Rita</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Meherpur</p>
+                        <a href="https://www.facebook.com/sanjita.afrose" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Sheikh Mushfiq Ahmed Apurbo -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/apurbo.jpeg" alt="Sheikh Mushfiq Ahmed Apurbo">
+                        </div>
+                        <h3 class="st-name">Sheikh Mushfiq Ahmed Apurbo</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Mymansing</p>
+                        <a href="https://www.facebook.com/share/14WUQH2ZPYK/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                     <!-- Nasrat Masud -->
+                     <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/ongkon.jpeg" alt="Nasrat Masud">
+                        </div>
+                        <h3 class="st-name">Nasrat Masud</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Tangail</p>
+                        <a href="https://www.facebook.com/share/1BtqkiRFnV/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                     <!-- Ratan Baroi -->
+                     <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/dev.jpeg" alt="Ratan Baroi">
+                        </div>
+                        <h3 class="st-name">Ratan Baroi Dev</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Gopalganj</p>
+                        <a href="https://www.facebook.com/dev.baroi.762296" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                     <!-- Muhammad Jayed Shaikh -->
+                     <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/jayed.jpeg" alt="Muhammad Jayed Shaikh">
+                        </div>
+                        <h3 class="st-name">Muhammad Jayed Shaikh</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Gopalganj</p>
+                        <a href="https://www.facebook.com/Muhammad.Jayed.Shaikh" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- KH Kamrul -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/Kamrul" alt="KH Kamrul">
+                        </div>
+                        <h3 class="st-name">KH Kamrul</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Panchagar</p>
+                        <a href="https://www.facebook.com/eazaz.kamrul" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                     <!-- Jouti khatun Shithil -->
+                     <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/shithil.jpeg" alt="Jouti khatun Shithil">
+                        </div>
+                        <h3 class="st-name">Jouti khatun Shithil</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Jhenaidah</p>
+                        <a href="https://www.facebook.com/share/1ABaYrT2jU/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                     <!-- Abir Mostofa -->
+                     <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/abir.jpeg" alt="Abir Mostofa">
+                        </div>
+                        <h3 class="st-name">Abir Mostafa</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Jhenaidah]</p>
+                        <a href="https://www.facebook.com/abir.mostofa.2024" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                     <!-- Sabrina Rahman Aboni -->
+                     <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/aboni.jpeg" alt="Sabrina Rahman Aboni">
+                        </div>
+                        <h3 class="st-name">Sabrina Rahman Aboni</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Jeshore</p>
+                        <a href="https://www.facebook.com/MdyArafat0" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Md. Emon Khan -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/emon.jpeg" alt="Md. Emon Khan">
+                        </div>
+                        <h3 class="st-name">Md. Emon Khan</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Gazipur</p>
+                        <a href="https://www.facebook.com/MdyArafat0" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Md Alauddin -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/alauddin.jpeg" alt="Md Alauddin">
+                        </div>
+                        <h3 class="st-name">Md Alauddin</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Mymansing</p>
+                        <a href="https://www.facebook.com/md.alauddin.147287" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Md. Manirul Islam Khan Nur -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/nur.jpeg" alt="nur">
+                        </div>
+                        <h3 class="st-name">Md. Manirul Islam Khan Nur</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Pirojpur</p>
+                        <a href="https://www.facebook.com/mdnurkhan.khan.56" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Mst. Marua Yousuf Ira -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/ira.jpeg" alt="ira">
+                        </div>
+                        <h3 class="st-name">Mst. Marua Yousuf Ira</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Chittagong</p>
+                        <a href="https://www.facebook.com/marua.yousuf" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Afsara Tasnim Jui -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/jui.jpeg" alt="Jui">
+                        </div>
+                        <h3 class="st-name">Afsara Tasnim Jui</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Kustia</p>
+                        <a href="https://www.facebook.com/share/1BfJ5EXLpD/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Nusrat Jahan Shorna -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/shorna.jpeg" alt="Nusrat Jahan Shorna">
+                        </div>
+                        <h3 class="st-name">Nusrat Jahan Shorna</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Narayanganj</p>
+                        <a href="https://www.facebook.com/nus.rat.1297943" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Salma Akter -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/salma" alt="salma">
+                        </div>
+                        <h3 class="st-name">Salma Akter</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Cumilla</p>
+                        <a href="https://www.facebook.com/salma.akter.196076" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Shadiatul Jannat Jame -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/jame.jpeg" alt="jame">
+                        </div>
+                        <h3 class="st-name">Shadiatul Jannat Jame</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Chuadanga</p>
+                        <a href="https://www.facebook.com/share/17ok8XVve5/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- SanjiDa Akter -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/sajiDa" alt="SanjiDa Akter">
+                        </div>
+                        <h3 class="st-name">SanjiDa Akter</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Narsingdi</p>
+                        <a href="https://www.facebook.com/sanjida.akter.737146" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                     <!-- Saleh Adib Hasnat -->
+                     <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/adib.jpeg" alt="adib">
+                        </div>
+                        <h3 class="st-name">Saleh Adib Hasnat</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Gopajganj</p>
+                        <a href="https://www.facebook.com/share/1CpuKfTw7r/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Sarder Tanvir Hossen -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/tanvir.jpeg" alt="Tanvir">
+                        </div>
+                        <h3 class="st-name">Sarder Tanvir Hossen</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Bagerhat</p>
+                        <a href="https://www.facebook.com/share/1CuQWzeJnW/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- MD. TAHSIN ISLAM TONU -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/tahsin.JPG" alt="tonu">
+                        </div>
+                        <h3 class="st-name">MD. TAHSIN ISLAM TONU</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Magura</p>
+                        <a href="https://www.facebook.com/share/1MdrrUmr4w/?mibextid=wwXIfr" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Akhlaqur Rahman Nabil -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/nabil.jpeg" alt="Nabil">
+                        </div>
+                        <h3 class="st-name">Akhlaqur Rahman Nabil</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Taingail</p>
+                        <a href="https://www.facebook.com/share/19kQ5nEUap/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Sunzida Alam -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/Sunzida" alt="Sunzida">
+                        </div>
+                        <h3 class="st-name">Sunzida Alam</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Comilla</p>
+                        <a href="https://www.facebook.com/alm.sanjida" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Anika Jahin -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/anika.jpeg" alt="anika">
+                        </div>
+                        <h3 class="st-name">Anika Jahin</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> khulna</p>
+                        <a href="https://www.facebook.com/profile.php?id=61569005690975" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Arobinda Biswas -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/aro.jpeg" alt="Arobinda Biswas">
+                        </div>
+                        <h3 class="st-name">Arobinda Biswas</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Khulna</p>
+                        <a href="https://www.facebook.com/arobinda.biswas.902" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- SM Tasnim Sajid -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/sajid.jpeg" alt="sajid">
+                        </div>
+                        <h3 class="st-name">S.M. Tasnim Sajid</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Pirojpur</p>
+                        <a href="https://www.facebook.com/tasnim.sajid.925007" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                    <!-- Afia Humyra Khan Mouli -->
+                    <article class="profile-card">
+                        <div class="profile-img-container">
+                            <img src="Profile Images/mouli.jpg" alt="Mouli">
+                        </div>
+                        <h3 class="st-name">Afia Humyra Khan Mouli</h3>
+                        <p class="st-district"><i class="fa-solid fa-map-pin"></i> Khulna</p>
+                        <a href="https://www.facebook.com/share/1BrXRG9QTS/" target="_blank" class="st-btn">
+                            <i class="fa-brands fa-facebook"></i> Facebook Profile
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- === GALLERY PAGE (Fixed) === -->
+        <!-- Changed class from "page-section2" to "page-section" -->
+        <section id="gallery" class="page-section">
+            
+            <!-- Container 1 -->
+            <div class="container">
+                <h2 class="section-title">Our First Presentation</h2>
+                <div class="gallery-container gallery-container-3coloumn">
+                    <div class="gallery-item" onclick="openLightbox('Gallery Image/Poster Presentation2.jpeg')">
+                        <img src="Gallery Image/38.jpg" alt="Memory">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('Gallery Image/Poster Presentation.jpeg')">
+                        <img src="Gallery Image/0000.jpeg" alt="Memory">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('Gallery Image/Poster Presentation.jpeg')">
+                        <img src="Gallery Image/000.jpeg" alt="Memory">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('Gallery Image/Poster Presentation1.jpeg')">
+                        <img src="Gallery Image/00.jpeg" alt="Memory">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('Gallery Image/Poster Presentation.jpeg')">
+                        <img src="Gallery Image/00000.jpeg" alt="Memory">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Container 2 -->
+            <div class="container">
+                <h2 class="section-title">First Year First Semester</h2>
+                <div class="gallery-container">
+                    <div class="gallery-item"><img src="Gallery Image/21.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/13.jpg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/9.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/10.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/20.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/11.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/14.jpg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/18.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/15.jpg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/16.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/17.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/19.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/35.jpg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/36.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/42.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/52.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/43.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/45.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/46.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/48.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/49.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/55.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/56.jpeg" alt="Memory"></div>
+                </div>
+            </div>
+
+            <!-- Container 3 -->
+            <div class="container">
+                <h2 class="section-title">Narail Tour</h2>
+                <div class="gallery-container-3coloumn">
+                    <div class="gallery-item"><img src="Gallery Image/4.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/7.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/5.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/50.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/41.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/42.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/47.jpeg" alt="Memory"></div>
+                </div>
+            </div>
+
+            <!-- Container 4 -->
+            <div class="container">
+                <h2 class="section-title">Funny Moments From First Year First Semester</h2>
+                <div class="gallery-container-3coloumn">
+                    <div class="gallery-item"><img src="Gallery Image/30.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/31.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/32.jpg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/39.jpg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/40.jpg" alt="Memory"></div>
+                </div>
+            </div>
+
+            <!-- Container 5 -->
+            <div class="container">
+                <h2 class="section-title">Our Drama Play with ZAM Sir - First Year Second Semester</h2>
+                <div class="gallery-container">
+                    <div class="gallery-item"><img src="Gallery Image/73.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/64.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/63.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/70.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/72.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/69.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/59.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/62.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/66.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/67.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/61.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/60.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/65.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/58.jpeg" alt="Memory"></div>
+                </div>
+            </div>
+
+             <!-- Container 6 -->
+             <div class="container">
+                <h2 class="section-title">Cultural Programme 2025 | Our Honorable Teachers</h2>
+                <div class="gallery-container">
+                    <div class="gallery-item"><img src="Gallery Image/New folder/teachers-orientation/zam.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/teachers-orientation/ss.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/teachers-orientation/ss2.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/teachers-orientation/mri.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/teachers-orientation/sb.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/teachers-orientation/mab.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/teachers-orientation/ma.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/teachers-orientation/mmi.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/teachers-orientation/tzn.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/teachers-orientation/sa.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/teachers-orientation/teachers.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/teachers-orientation/teachers2.JPG" alt="Memory"></div>
+                </div>
+
+                <h6 class="section-title" style="margin-top: 2rem;">The Englishers</h6>
+                <div class="gallery-container">
+                    <div class="gallery-item"><img src="Gallery Image/New folder/83.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/84.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/86.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/gs.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/87.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/89.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/90.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/91.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/92.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/93.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/94.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/95.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/96.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/97.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/98.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/99.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/100.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/101.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/102.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/103.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/104.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/105.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/106.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/108.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/110.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/111.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/112.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/113.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/115.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/116.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/117.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/118.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/119.JPG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/120.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/121.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/122.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/123.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/124.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/125.JPeG" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/126.jpeg" alt="Memory"></div>
+                </div>
+            </div>
+
+            <!-- Container 7 -->
+            <div class="container">
+                <h2 class="section-title">Cultural Week 2025</h2>
+                <div class="gallery-container-3coloumn">
+                    <div class="gallery-item"><img src="Gallery Image/New folder/127.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/129.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/130.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/131.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/132.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/133.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/134.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/136.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/138.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/139.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/140.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/142.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/143.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/144.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/145.jpeg" alt="Memory"></div>
+                    <div class="gallery-item"><img src="Gallery Image/New folder/146.jpeg" alt="Memory"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === CONTACT PAGE === -->
+        <section id="contact" class="page-section">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <p style="text-align:center;">This page mirrors the contact section on Home.</p>
+                <div style="max-width:600px; margin:0 auto;">
+                     <div class="contact-wrapper">
+                        <div class="contact-form">
+                            <form onsubmit="event.preventDefault(); alert('Sent!');">
+                                <div class="form-group"><label>Email</label><input type="email" required></div>
+                                <div class="form-group"><label>Subject</label><input type="text" required></div>
+                                <div class="form-group"><label>Message</label><textarea rows="5" required></textarea></div>
+                                <button class="btn-submit">Submit</button>
+                            </form>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="close-btn" onclick="closeLightboxDirect()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2023 English Department, Batch-13.</p>
+            <p>Designed by Yasin Arafat</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+            // পেজ লোড হওয়ার সময় গ্যালারি কপি করার ফাংশন
+            window.onload = function() {
+                // গ্যালারি সেকশনের সব কন্টেন্ট ধরুন
+                const galleryContent = document.querySelector('#gallery').innerHTML;
+                
+                // হোম পেজের লোডার ডিভ-এ গ্যালারি পেস্ট করে দিন
+                document.getElementById('home-gallery-loader').innerHTML = galleryContent;
+                
+                // হোম পেজে টাইটেল একটু ছোট বা আলাদা করতে চাইলে এখান থেকে কন্ট্রোল করা যায়
+            };
+
+
+
+        // 1. Page Navigation Logic
+        function switchPage(pageId, btn) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(sec => {
+                sec.classList.remove('active-section');
+            });
+            // Show selected section
+            document.getElementById(pageId).classList.add('active-section');
+
+            // Update buttons
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // 2. Banner Slider Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 4000);
+
+        // 3. Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (event.target !== lightboxImg) {
+                closeLightboxDirect();
+            }
+        }
+
+        function closeLightboxDirect() {
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>
